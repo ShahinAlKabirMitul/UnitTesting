@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Math = TestNinja.Fundamentals.Math;
 
 namespace TestNinja.UnitTests
@@ -11,36 +6,32 @@ namespace TestNinja.UnitTests
     [TestFixture]
     public class MathTests
     {
+        private Math _math;
+        // Setup
+        // TearDown
+
+        [SetUp]
+        public void Setup()
+        {
+            _math=new Math();
+        }
+        
         [Test]
         public void Add_WhenCalled_ReturnTheSUMofArgunents()
         {
-            var math = new Math();
-            var result = math.Add(1, 2);
+            _math = new Math();
+            var result = _math.Add(1, 2);
             Assert.That(result,Is.EqualTo(3));
         }
-
         [Test]
-        public void Max_FirstArgumentIsGreater_ReturnTheFirstArgument()
+        [TestCase(2, 1, 2)]
+        [TestCase(1, 2, 2)]
+        [TestCase(1, 1, 1)]
+        public void Add_WhenCalled_ReturnTheGreaterArgument(int a, int b, int expectedReturn)
         {
-            var math = new Math();
-            var result = math.Max(2, 1);
-            Assert.That(result,Is.EqualTo(2));
-        }
-
-        [Test]
-        public void Max_SecondArgumentIsGreater_ReturnTheSecondArgument()
-        {
-            var math = new Math();
-            var result = math.Max(1, 2);
-            Assert.That(result, Is.EqualTo(2));
-        }
-
-        [Test]
-        public void Max_ArgumentsAreEqual_ReturnTheSameArgument()
-        {
-            var math = new Math();
-            var result = math.Max(1, 1);
-            Assert.That(result, Is.EqualTo(1));
+            _math = new Math();
+            var result = _math.Add(a, b);
+            Assert.That(result, Is.EqualTo(expectedReturn));
         }
 
     }
