@@ -17,7 +17,7 @@ namespace TestNinja.UnitTests
         }
         
         [Test]
-        [Ignore("I wanted to")]
+        //[Ignore("I wanted to")]
         public void Add_WhenCalled_ReturnTheSUMofArgunents()
         {
             _math = new Math();
